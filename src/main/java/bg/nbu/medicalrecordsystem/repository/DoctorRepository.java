@@ -1,0 +1,7 @@
+package bg.nbu.medicalrecordsystem.repository;
+
+import bg.nbu.medicalrecordsystem.entity.Doctor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+
+<nav th:fragment="navbar"
+     class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand"
+           href="/">
+
+            Medical System
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <div class="navbar-nav ms-auto align-items-center">
+
+                <!-- Dashboard -->
+
+                <a class="nav-link"
+                   href="/">
+
+                    Dashboard
+                </a>
+
+                <!-- ADMIN + DOCTOR -->
+
+                <div sec:authorize="hasAnyRole('ADMIN','DOCTOR')"
+                     class="d-flex align-items-center">
+
+                    <!-- MANAGEMENT -->
+
+                    <div class="dropdown me-2">
+
+                        <button class="btn btn-outline-light dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+
+                            Management
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-dark">
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/patients-page">
+
+                                    Patients
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/add-patient">
+
+                                    Add Patient
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/doctors-page">
+
+                                    Doctors
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/add-doctor">
+
+                                    Add Doctor
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/examinations-page">
+
+                                    Examinations
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/add-examination">
+
+                                    Add Examination
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/sick-leaves-page">
+
+                                    Sick Leaves
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <!-- STATISTICS -->
+
+                    <div class="dropdown me-2">
+
+                        <button class="btn btn-outline-light dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+
+                            Statistics
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-dark">
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/patients-by-diagnosis">
+
+                                    Patients By Diagnosis
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/patients-by-doctor">
+
+                                    Patients By Doctor
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/revenue-by-doctor">
+
+                                    Revenue By Doctor
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/patients-count">
+
+                                    Patients Count
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/doctor-visits">
+
+                                    Doctor Visits
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/filter-examinations">
+
+                                    Filter Examinations
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/sick-leaves-by-month">
+
+                                    Sick Leaves By Month
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="/top-doctors-sick-leaves">
+
+                                    Top Sick Leave Doctors
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <!-- PATIENT -->
+
+                <a class="nav-link"
+                   sec:authorize="hasRole('PATIENT')"
+                   href="/my-history">
+
+                    Medical History
+                </a>
+
+                <!-- LOGOUT -->
+
+                <form th:action="@{/logout}"
+                      method="post"
+                      class="d-flex ms-3">
+
+                    <button type="submit"
+                            class="btn btn-danger">
+
+                        Logout
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- BOOTSTRAP JS -->
+
+</body>
+</html>
